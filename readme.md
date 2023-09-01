@@ -1,4 +1,4 @@
-<img src="https://github.com/shramee/dojo-raw-starter/assets/11048263/bdcdc559-6760-4c4e-bba1-f5137180f5f4" align="right">
+<img width=350 src="https://github.com/shramee/dojo-raw-starter/assets/11048263/bdcdc559-6760-4c4e-bba1-f5137180f5f4" align="right">
 
 # Dojo no-framework starter
 
