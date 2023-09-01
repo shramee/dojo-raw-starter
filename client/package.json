@@ -1,5 +1,5 @@
 {
-  "name": "dojo-p5",
+  "name": "dojo-raw",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,8 +13,6 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "@types/p5": "^1.7.0",
-    "dojo": "https://github.com/shramee/dojo-p5.git#dojo-lib",
-    "p5": "^1.7.0"
+    "dojo": "https://github.com/shramee/dojo-js.git"
   }
 }

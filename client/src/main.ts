@@ -1,44 +1,45 @@
 import './style.css';
-import { setupDojo, accountAddress } from './dojo';
+import logo from '/logo.svg';
+import Dojo from 'dojo';
 
-import p5 from 'p5';
+async function setup_app() {
+  const { VITE_ACCOUNT, VITE_PRIVATE_KEY, VITE_WORLD, } = import.meta.env;
 
-const sketch = (p: p5) => {
-  const dojo = setupDojo();
+  const dojo = Dojo.fromCredentials({
+    accountAddress: `${VITE_ACCOUNT}`,
+    accountPrivateKey: `${VITE_PRIVATE_KEY}`,
+    worldAddress: `${VITE_WORLD}`,
+  });
 
-  let pos: number[] = [];
+  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+    <div>
+      <a href="https://dojoengine.org" target="_blank">
+        <img src="${logo}" class="logo" alt="Vite logo" />
+      </a>
+      <h1>Dojo starter</h1>
+      <p class="read-the-docs">
+        Your position component is: 
+      </p>
+      <p>
+      <code id="position-component">0, 0</code>
+      </p>
+      <button id="spawn">Spawn</button>
+    </div>
+  `
+  const $spawn = document.querySelector('#spawn');
+  const $posLog = document.querySelector('#position-component');
 
-  function spawn() {
-    dojo.execute('spawn');
+  if ($spawn) {
+    $spawn.addEventListener('click', () => {
+      dojo.execute('spawn');
+    })
   }
+  if ($posLog) {
+    setInterval(async () => {
+      let pos = await dojo.entity("Position", VITE_ACCOUNT, 0, 2);
+      $posLog.innerHTML = `${pos[1]}, ${pos[2]}`;
+    }, 500);
+  }
+}
 
-  setInterval(() => {
-    dojo.entity("Position", accountAddress, 0, 2).then(pos_resp => {
-      pos = [
-        10 * (pos_resp[1] - 1000),
-        10 * (pos_resp[2] - 1000)
-      ];
-    }).catch(e => {
-      // Same as above with 0 values
-      pos = [
-        10 * (-1000),
-        10 * (-1000)
-      ];
-    }); // Silent failure
-
-  }, 500);
-
-  p.setup = () => {
-    p.createCanvas(500, 500);
-    const button = p.createButton('Spawn');
-    button.mousePressed(spawn);
-  };
-
-  p.draw = () => {
-    p.background('#eee');
-    p.translate(250, 250);
-    p.ellipse(pos[0], pos[1], 25);
-  };
-};
-
-new p5(sketch);
+setup_app();

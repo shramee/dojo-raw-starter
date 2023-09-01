@@ -1,4 +1,8 @@
-# Dojo P5.js starter
+# Dojo no-framework starter
+
+Completely unopinionated starter that just gives you basic interface to interact with your Dojo world.
+
+Included helper methods in Dojo class - https://github.com/shramee/dojo-js
 
 ## Directory structure
 
