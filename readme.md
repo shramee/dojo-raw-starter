@@ -1,8 +1,11 @@
+<img src="https://github.com/shramee/dojo-raw-starter/assets/11048263/bdcdc559-6760-4c4e-bba1-f5137180f5f4" align="right">
+
 # Dojo no-framework starter
 
 Completely unopinionated starter that just gives you basic interface to interact with your Dojo world.
 
 Included helper methods in Dojo class - https://github.com/shramee/dojo-js
+
 
 ## Directory structure
 
